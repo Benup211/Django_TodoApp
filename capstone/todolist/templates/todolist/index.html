@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    {% if user.is_anonymous == True %}
+    <div>
+        <p class="text-center">It's appear you are not sign in.<a href="{% url 'todolist:login' %}">Click Here</a></p>
+    </div>
+    {% else %}
+    <h1 class="text-center">Welcome {{user.first_name}} {{user.last_name}}</h1>
+    <div class="d-flex justify-content-center mb-2">
+        <div class="list-group" style="width: 400px;">
+            <h4 class="text-center">My Task</h4>
+            {% if todoitem.count == 0 %}
+                <a href="{% url 'todolist:add_task' %}" class="list-group-item list-group-item-action bg-warning" aria-current="true">
+                    <h5 class="text-center">Add Task</h5>
+                </a>
+            {% else %}
+                {% for items in todoitem %}
+                    <a href="{% url 'todolist:viewtodoitem' items.id %}" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{items.task_name}}</h5>
+                        </div>
+                        <small><strong>Status: </strong>{{items.status}}</small>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="list-group" style="width: 400px;">
+            <h4 class="text-center">My Events</h4>
+            {% if eventitem.count == 0 %}
+                <a href="{% url 'todolist:add_event' %}" class="list-group-item list-group-item-action bg-warning" aria-current="true">
+                    <h5 class="text-center">Add Event</h5>
+                </a>
+            {% else %}
+                {% for eitems in eventitem %}
+                    <a href="{% url 'todolist:vieweventitem' eitems.id %}" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{eitems.event_name}}</h5>
+                        </div>
+                        <small><strong>Status: </strong>{{eitems.status}}</small>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

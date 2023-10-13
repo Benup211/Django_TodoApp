@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Sign In{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1 class="text-center my-3">Register</h1>
+            {% if error == True %}
+                <p class="text-danger">Invalid user credentials, please check your username and password</p>
+            {% endif %}
+            <form action="{% url 'todolist:register' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username">Username: </label>
+                    <input class="form-control" id="username" type="text" name="username" maxlength="20" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="first_name">First Name: </label>
+                    <input class="form-control" id="first_name" type="text" name="first_name" maxlength="50" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="last_name">Last Name: </label>
+                    <input class="form-control" id="last_name" type="text" name="last_name" maxlength="50" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email: </label>
+                    <input class="form-control" id="email" type="email" name="email" maxlength="100" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password">Password: </label>
+                    <input class="form-control" id="password" type="password" name="password" maxlength="20" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirm_password">Confirm Password: </label>
+                    <input class="form-control" id="confirm_password" type="password" name="confirm_password" maxlength="20" required>
+                </div>
+
+                <div class="text-center">
+                    <input class="btn btn-success" type="submit" value="Register">
+                </div>
+            </form>
+            <p class="text-center mt-2">Account created,<a href="{% url 'todolist:login' %}">Click Here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

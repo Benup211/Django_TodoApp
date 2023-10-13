@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Event{% endblock %}
+{% block content %}
+<div class="row d-flex justify-content-center p-4">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{event_name}}</h5>
+        <p class="card-text">{{description}}</p>
+        <p class="card-text"><strong>Status: </strong>{{status}}</p>
+        <p class="card-text"><strong>Time: </strong>{{event_date}}</p>
+        <a href="{% url 'todolist:index' %}" class="btn btn-primary">Back</a>
+        <a href="{% url 'todolist:update_event' id %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'todolist:delete_event' id %}" class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

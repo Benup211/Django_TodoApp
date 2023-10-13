@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Update Task{% endblock %}
+{% block content %}
+	<div class="container">
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <h1 class="text-center my-3">Update Event</h1>
+                    {% if error == True %}
+                        <p class="text-danger">Event not found</p>
+                    {% endif %}
+                    <form action="#" method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="event_name">Event Name: </label>
+                            <input class="form-control" id="event_name" type="text" name="event_name" value="{{event_name}}" maxlength="50" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description">Description: </label>
+                            <textarea class="form-control" name="description" required>{{ description }}</textarea>
+                        </div>
+
+                         <div class="mb-3">
+                            <label for="event_date">Event Date: </label>
+                            <input class="form-control" id="event_date" type="date" name="event_date" value="{{event_date}}" maxlength="50" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="status">Status: </label>
+                            <input class="form-control" id="status" type="text" name="status" value="{{status}}" maxlength="50" required>
+                        </div>
+
+                        <div class="text-center">
+                            <input class="btn btn-success" type="submit" value="Update Event">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+    </div>
+{% endblock %}
